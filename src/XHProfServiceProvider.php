@@ -20,7 +20,7 @@ class XHProfServiceProvider extends ServiceProvider
         }
 
         $this->mergeConfigFrom(
-            dirname(__DIR__) . '/config/config.php',
+            dirname(__DIR__) . '/config/xhprof.php',
             'xhprof'
         );
 
