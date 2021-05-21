@@ -23,14 +23,15 @@ class XHProfMongoDBProvider implements ProviderInterface
     {
         $data = xhprof_disable();
 
+        if (!is_array($data)) return false;
         $data = $this->encodeProfile($data);
         $ProfilingData = new ProfilingData(config('xhprof', []));
         $result = $ProfilingData->getProfilingData($data);
         //1.Connect MongoDB
         $database = config('xhprof.database', []);
-        if(empty($database['username'])){
+        if (empty($database['username'])) {
             $uri = "{$database['driver']}://{$database['host']}:{$database['port']}/{$database['database']}";
-        }else{
+        } else {
             $uri = "{$database['driver']}://{$database['username']}:{$database['password']}@{$database['host']}:{$database['port']}/{$database['database']}";
         }
         $manager = new \MongoDB\Driver\Manager($uri);
@@ -38,7 +39,7 @@ class XHProfMongoDBProvider implements ProviderInterface
         $bulk = new \MongoDB\Driver\BulkWrite();
         $oid = new \MongoDB\BSON\ObjectID();
         $result['_id'] = $oid;
-        $_id= $bulk->insert($result);
+        $_id = $bulk->insert($result);
         //3.Run insert
         return $manager->executeBulkWrite($database['database'] . '.results', $bulk);
     }
