@@ -1,0 +1,34 @@
+{
+    "name": "wareon/laravel-xhprof",
+    "description": "Laravel xhprof.",
+    "type": "library",
+    "keywords": ["laravel", "extension"],
+    "homepage": "https://github.com/wareon/laravel-xhprof",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "wareon",
+            "email": "wareon@qq.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.0.0",
+        "laravel/framework": "^5.3|^6.0|^7.0|^8.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Wareon\\LaravelXhprof\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Wareon\\LaravelXhprof\\XhprofServiceProvider"
+            ]
+        }
+    }
+}
