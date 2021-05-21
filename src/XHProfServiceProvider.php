@@ -4,6 +4,8 @@ namespace Wareon\LaravelXhprof;
 
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Support\ServiceProvider;
+use Wareon\LaravelXhprof\Middleware\XHProfMiddleware;
+use Wareon\LaravelXhprof\Services\XHProfService;
 
 class XHProfServiceProvider extends ServiceProvider
 {
@@ -21,6 +23,14 @@ class XHProfServiceProvider extends ServiceProvider
             dirname(__DIR__) . '/config/config.php',
             'xhprof'
         );
+
+		
+        $this->app->singleton(XHProfMiddleware::class);
+        $this->app->singleton(XHProfService::class);
+
+        if (config('xhprof.global_middleware', false)) {
+            $this->extraMiddleware(XHProfMiddleware::class);
+        }
 
     }
 
