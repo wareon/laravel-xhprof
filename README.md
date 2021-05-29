@@ -60,3 +60,12 @@ XHPROF_DB_DATABASE=xhprof
 XHPROF_DB_USERNAME=
 XHPROF_DB_PASSWORD=
 ```
+
+# use in console
+
+```php
+$provider = new XHProfMongoDBProvider();
+$provider->enable();
+// Todo: your code
+$provider->disable();
+```
