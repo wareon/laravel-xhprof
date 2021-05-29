@@ -50,6 +50,7 @@ class ProfilingData
         );
 
         $serverMeta = array_intersect_key($_SERVER, array_flip($allowedServerKeys));
+        $serverMeta['REQUEST_METHOD'] = $serverMeta['REQUEST_METHOD'] ?? 'UNKNOW';
 
         $meta = array(
             'url' => $url,
